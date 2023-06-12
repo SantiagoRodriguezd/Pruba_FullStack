@@ -1,0 +1,260 @@
+[
+    {
+        "model": "tasks.rol",
+        "fields": {
+            "nombre_rol": "Administrador"
+        }
+    },
+    {
+        "model": "tasks.rol",
+        "fields": {
+            "nombre_rol": "Comprador"
+        }
+    },
+    {
+        "model": "tasks.usuario",
+        "fields": {
+            "nombre_usuario": "admin1",
+            "contrasena": "contrasena1",
+            "rol_id": [
+                1
+            ]
+        }
+    },
+    {
+        "model": "tasks.usuario",
+        "fields": {
+            "nombre_usuario": "usuario2",
+            "contrasena": "contrasena2",
+            "rol_id": [
+                2
+            ]
+        }
+    },
+    {
+        "model": "tasks.usuario",
+        "fields": {
+            "nombre_usuario": "usuario3",
+            "contrasena": "contrasena2",
+            "rol_id": [
+                2
+            ]
+        }
+    },
+    {
+        "model": "tasks.usuario",
+        "fields": {
+            "nombre_usuario": "usuario4",
+            "contrasena": "contrasena2",
+            "rol_id": [
+                2
+            ]
+        }
+    },
+    {
+        "model": "tasks.cliente",
+        "fields": {
+            "documento": 123456789,
+            "tipo_documento": "CC",
+            "nombre": "Juan",
+            "apellido": "Perez",
+            "direccion": "Calle Principal 123",
+            "telefono": "1234567890",
+            "fecha_nacimiento": "1990-01-01",
+            "imagen_perfil": "https://example.com/imagen1.jpg",
+            "id_usuario": 1
+        }
+    },
+    {
+        "model": "tasks.cliente",
+        "fields": {
+            "documento": 987654321,
+            "tipo_documento": "CC",
+            "nombre": "Maria",
+            "apellido": "Lopez",
+            "direccion": "Avenida Central 456",
+            "telefono": "9876543210",
+            "fecha_nacimiento": "1995-05-15",
+            "imagen_perfil": "https://example.com/imagen2.jpg",
+            "id_usuario": 2
+        }
+    },
+    {
+        "model": "tasks.cliente",
+        "fields": {
+            "documento": 654321987,
+            "tipo_documento": "CC",
+            "nombre": "Pedro",
+            "apellido": "Gomez",
+            "direccion": "Plaza Mayor 789",
+            "telefono": "6543219870",
+            "fecha_nacimiento": "1988-12-10",
+            "imagen_perfil": "https://example.com/imagen3.jpg",
+            "id_usuario": 3
+        }
+    },
+    {
+        "model": "tasks.cliente",
+        "fields": {
+            "documento": 456789123,
+            "tipo_documento": "CE",
+            "nombre": "Laura",
+            "apellido": "Rodriguez",
+            "direccion": "Calle Secundaria 456",
+            "telefono": "4567891230",
+            "fecha_nacimiento": "1992-07-20",
+            "imagen_perfil": "https://example.com/imagen4.jpg",
+            "id_usuario": 4
+        }
+    },
+    {
+        "model": "tasks.proveedor",
+        "fields": {
+            "nit": "123456789",
+            "nombre": "Proveedor1",
+            "ciudad": "Ciudad1",
+            "correo": "proveedor1@example.com",
+            "numero_contacto": "1234567890"
+        }
+    },
+    {
+        "model": "tasks.proveedor",
+        "fields": {
+            "nit": "987654321",
+            "nombre": "Proveedor2",
+            "ciudad": "Ciudad2",
+            "correo": "proveedor2@example.com",
+            "numero_contacto": "9876543210"
+        }
+    },
+    {
+        "model": "tasks.proveedor",
+        "fields": {
+            "nit": "654321987",
+            "nombre": "Proveedor3",
+            "ciudad": "Ciudad3",
+            "correo": "proveedor3@example.com",
+            "numero_contacto": "6543219870"
+        }
+    },
+    {
+        "model": "tasks.producto",
+        "fields": {
+            "nombre": "Vaso",
+            "categoria": "Cocina",
+            "marca": "Victoria",
+            "valor_unitario": 50.00,
+            "unidades_stock": 20,
+            "descripcion": "Vaso de vidrio resistente para bebidas.",
+            "proveedor_id": 1
+        }
+    },
+    {
+        "model": "tasks.producto",
+        "fields": {
+            "nombre": "Plato",
+            "categoria": "Cocina",
+            "marca": "Snips",
+            "valor_unitario": 19.00,
+            "unidades_stock": 15,
+            "descripcion": "Plato hondo de cerámica para comidas.",
+            "proveedor_id": 1
+        }
+    },
+    {
+        "model": "tasks.producto",
+        "fields": {
+            "nombre": "Cuchara",
+            "categoria": "Cocina",
+            "marca": "Casa Home",
+            "valor_unitario": 15.00,
+            "unidades_stock": 30,
+            "descripcion": "Cuchara de acero inoxidable para cocinar.",
+            "proveedor_id": 1
+        }
+    },
+    {
+        "model": "tasks.producto",
+        "fields": {
+            "nombre": "Tenedor",
+            "categoria": "Cocina",
+            "marca": "Casa Home",
+            "valor_unitario": 8.00,
+            "unidades_stock": 25,
+            "descripcion": "Tenedor de acero inoxidable para comidas.",
+            "proveedor_id": 2
+        }
+    },
+    {
+        "model": "tasks.producto",
+        "fields": {
+            "nombre": "Cuchillo",
+            "categoria": "Cocina",
+            "marca": "Casa Home",
+            "valor_unitario": 12.00,
+            "unidades_stock": 12,
+            "descripcion": "Cuchillo de cocina con filo de alta calidad.",
+            "proveedor_id": 2
+        }
+    },
+    {
+        "model": "tasks.producto",
+        "fields": {
+            "nombre": "Tostadora",
+            "categoria": "Electrodomésticos",
+            "marca": "Black",
+            "valor_unitario": 90.00,
+            "unidades_stock": 5,
+            "descripcion": "Tostadora de pan para preparar deliciosos desayunos.",
+            "proveedor_id": 3
+        }
+    },
+    {
+        "model": "tasks.producto",
+        "fields": {
+            "nombre": "Sanduchera",
+            "categoria": "Electrodomésticos",
+            "marca": "Black",
+            "valor_unitario": 70.00,
+            "unidades_stock": 8,
+            "descripcion": "Sanduchera eléctrica para hacer sándwiches calientes.",
+            "proveedor_id": 3
+        }
+    },
+    {
+        "model": "tasks.producto",
+        "fields": {
+            "nombre": "Microondas",
+            "categoria": "Electrodomésticos",
+            "marca": "Black",
+            "valor_unitario": 150.00,
+            "unidades_stock": 3,
+            "descripcion": "Microondas con múltiples funciones de cocción.",
+            "proveedor_id": 3
+        }
+    },
+    {
+        "model": "tasks.producto",
+        "fields": {
+            "nombre": "Silla",
+            "categoria": "Muebles",
+            "marca": "House",
+            "valor_unitario": 80.00,
+            "unidades_stock": 10,
+            "descripcion": "Silla de madera para uso en comedores o salas.",
+            "proveedor_id": 1
+        }
+    },
+    {
+        "model": "tasks.producto",
+        "fields": {
+            "nombre": "Comedor",
+            "categoria": "Muebles",
+            "marca": "House",
+            "valor_unitario": 350.00,
+            "unidades_stock": 2,
+            "descripcion": "Juego de comedor de 6 sillas con mesa rectangular.",
+            "proveedor_id": 2
+        }
+    }
+]
