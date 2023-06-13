@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
@@ -216,31 +216,35 @@ def actualizar_cliente(request, documento):
         return JsonResponse({"error": "Cliente no encontrado"}, status=404)
 
     if request.method == "PUT":
-        tipo_documento = request.POST.get("tipo_documento")
-        nombre = request.POST.get("nombre")
-        apellido = request.POST.get("apellido")
-        direccion = request.POST.get("direccion")
-        telefono = request.POST.get("telefono")
-        fecha_nacimiento = request.POST.get("fecha_nacimiento")
-        imagen_perfil = request.POST.get("imagen_perfil")
+        try:
+            data = json.loads(request.body)
+            tipo_documento = data.get("tipo_documento")
+            nombre = data.get("nombre")
+            apellido = data.get("apellido")
+            direccion = data.get("direccion")
+            telefono = data.get("telefono")
+            fecha_nacimiento = data.get("fecha_nacimiento")
+            imagen_perfil = data.get("imagen_perfil")
 
-        if tipo_documento:
-            cliente.tipo_documento = tipo_documento
-        if nombre:
-            cliente.nombre = nombre
-        if apellido:
-            cliente.apellido = apellido
-        if direccion:
-            cliente.direccion = direccion
-        if telefono:
-            cliente.telefono = telefono
-        if fecha_nacimiento:
-            cliente.fecha_nacimiento = fecha_nacimiento
-        if imagen_perfil:
-            cliente.imagen_perfil = imagen_perfil
+            if tipo_documento:
+                cliente.tipo_documento = tipo_documento
+            if nombre:
+                cliente.nombre = nombre
+            if apellido:
+                cliente.apellido = apellido
+            if direccion:
+                cliente.direccion = direccion
+            if telefono:
+                cliente.telefono = telefono
+            if fecha_nacimiento:
+                cliente.fecha_nacimiento = fecha_nacimiento
+            if imagen_perfil:
+                cliente.imagen_perfil = imagen_perfil
 
-        cliente.save()
-        return JsonResponse({"message": "Cliente actualizado exitosamente"})
+            cliente.save()
+            return JsonResponse({"message": "Cliente actualizado exitosamente"})
+        except json.JSONDecodeError:
+            return JsonResponse({"error": "Datos no válidos"}, status=400)
 
     return JsonResponse({"error": "Invalid request method"}, status=405)
 
@@ -284,10 +288,58 @@ def cliente_detalle_view(request, documento):
 
 
 # Crud Productos
-
-
 @csrf_exempt
 def crear_producto(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        nombre = data.get("nombre")
+        categoria = data.get("categoria")
+        marca = data.get("marca")
+        valor_unitario = data.get("valor_unitario")
+        unidades_stock = data.get("unidades_stock")
+        descripcion = data.get("descripcion")
+        proveedor_id = data.get("proveedor_id")
+
+        if (
+            nombre
+            and categoria
+            and marca
+            and valor_unitario
+            and unidades_stock
+            and descripcion
+            and proveedor_id is not None
+        ):
+            try:
+                proveedor = Proveedor.objects.get(pk=proveedor_id)
+            except Proveedor.DoesNotExist:
+                return JsonResponse({"error": "Proveedor no encontrado"}, status=400)
+
+            producto = Producto(
+                nombre=nombre,
+                categoria=categoria,
+                marca=marca,
+                valor_unitario=valor_unitario,
+                unidades_stock=unidades_stock,
+                descripcion=descripcion,
+                proveedor=proveedor,
+            )
+            producto.save()
+
+            data = {
+                "nombre": producto.nombre,
+                "categoria": producto.categoria,
+                "marca": producto.marca,
+                "valor_unitario": str(producto.valor_unitario),
+                "unidades_stock": producto.unidades_stock,
+                "descripcion": producto.descripcion,
+                "proveedor": producto.proveedor.nombre,
+            }
+            return JsonResponse(data)
+
+        return JsonResponse({"error": "Faltan datos requeridos"}, status=400)
+
+    return JsonResponse({"error": "Invalid request method"}, status=405)
+
     if request.method == "POST":
         try:
             data = json.loads(request.body)
@@ -425,7 +477,23 @@ def eliminar_producto(request, producto_id):
 def listar_productos(request):
     productos = Producto.objects.all()
     productos_data = serializers.serialize("json", productos)
-    return JsonResponse(productos_data, safe=False)
+    productos_json = json.loads(productos_data)
+    productos_formatted = []
+
+    for producto in productos_json:
+        producto_fields = producto["fields"]
+        producto_formatted = {
+            "id": producto["pk"],
+            "nombre": producto_fields["nombre"],
+            "categoria": producto_fields["categoria"],
+            "marca": producto_fields["marca"],
+            "valor_unitario": str(producto_fields["valor_unitario"]),
+            "unidades_stock": producto_fields["unidades_stock"],
+            "descripcion": producto_fields["descripcion"],
+        }
+        productos_formatted.append(producto_formatted)
+
+    return JsonResponse(productos_formatted, safe=False)
 
 
 def detalle_producto(request, producto_id):
@@ -433,8 +501,25 @@ def detalle_producto(request, producto_id):
         try:
             producto = Producto.objects.get(id=producto_id)
             producto_data = serializers.serialize("json", [producto])
-            return JsonResponse(producto_data, safe=False)
+            producto_json = json.loads(producto_data)
+            producto_formatted = {
+                "id": producto_json[0]["pk"],
+                "nombre": producto_json[0]["fields"]["nombre"],
+                "categoria": producto_json[0]["fields"]["categoria"],
+                "marca": producto_json[0]["fields"]["marca"],
+                "valor_unitario": str(producto_json[0]["fields"]["valor_unitario"]),
+                "unidades_stock": producto_json[0]["fields"]["unidades_stock"],
+                "descripcion": producto_json[0]["fields"]["descripcion"],
+            }
+            return JsonResponse(producto_formatted, safe=False)
         except Producto.DoesNotExist:
             return JsonResponse({"error": "Producto no encontrado"}, status=404)
     else:
         return JsonResponse({"error": "Método no permitido"}, status=405)
+
+
+@api_view(["DELETE"])
+def eliminar_usuario(request, usuario_id):
+    usuario = get_object_or_404(Usuario, id=usuario_id)
+    usuario.delete()
+    return Response({"message": "Usuario eliminado correctamente."})

@@ -140,6 +140,7 @@
     {
         "model": "tasks.producto",
         "fields": {
+            "id": 1,
             "nombre": "Vaso",
             "categoria": "Cocina",
             "marca": "Victoria",
@@ -152,6 +153,7 @@
     {
         "model": "tasks.producto",
         "fields": {
+            "id": 2,
             "nombre": "Plato",
             "categoria": "Cocina",
             "marca": "Snips",
@@ -164,6 +166,7 @@
     {
         "model": "tasks.producto",
         "fields": {
+            "id": 3,
             "nombre": "Cuchara",
             "categoria": "Cocina",
             "marca": "Casa Home",
@@ -176,6 +179,7 @@
     {
         "model": "tasks.producto",
         "fields": {
+            "id": 4,
             "nombre": "Tenedor",
             "categoria": "Cocina",
             "marca": "Casa Home",
@@ -188,6 +192,7 @@
     {
         "model": "tasks.producto",
         "fields": {
+            "id": 5,
             "nombre": "Cuchillo",
             "categoria": "Cocina",
             "marca": "Casa Home",
@@ -200,6 +205,7 @@
     {
         "model": "tasks.producto",
         "fields": {
+            "id": 6,
             "nombre": "Tostadora",
             "categoria": "Electrodomésticos",
             "marca": "Black",
@@ -212,6 +218,7 @@
     {
         "model": "tasks.producto",
         "fields": {
+            "id": 7,
             "nombre": "Sanduchera",
             "categoria": "Electrodomésticos",
             "marca": "Black",
@@ -224,6 +231,7 @@
     {
         "model": "tasks.producto",
         "fields": {
+            "id": 8,
             "nombre": "Microondas",
             "categoria": "Electrodomésticos",
             "marca": "Black",
@@ -236,6 +244,7 @@
     {
         "model": "tasks.producto",
         "fields": {
+            "id": 9,
             "nombre": "Silla",
             "categoria": "Muebles",
             "marca": "House",
@@ -248,6 +257,7 @@
     {
         "model": "tasks.producto",
         "fields": {
+            "id": 10,
             "nombre": "Comedor",
             "categoria": "Muebles",
             "marca": "House",

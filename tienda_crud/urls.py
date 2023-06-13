@@ -13,7 +13,7 @@ urlpatterns = [
     path("api/clientes/", views.obtener_clientes, name="obtener_clientes"),
     path("api/clientes/crear/", views.crear_cliente, name="crear_cliente"),
     path(
-        "api/clientes/<int:documento>/",
+        "api/clientes_actualizar/<int:documento>/",
         views.actualizar_cliente,
         name="actualizar_cliente",
     ),
@@ -48,4 +48,9 @@ urlpatterns = [
     ),
     # Url´s listar usuario con rol
     path("api/usuarios/", views.usuarios_view, name="usuarios"),
+    path(
+        "usuarios_eliminar/<int:usuario_id>/",
+        views.eliminar_usuario,
+        name="eliminar_usuario",
+    ),
 ]
